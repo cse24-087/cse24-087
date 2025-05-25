@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Added proper viewport tag for mobile responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Official website for Manchester City Women's Football Team. Get the latest news, fixtures, squad information, and more.">
+    <title>Manchester City Women - Official Website</title>
+    <style>
+    /* ALL YOUR EXISTING STYLES REMAIN EXACTLY THE SAME */
+    :root {
+      --mancity-blue: #6CADDF;
+      --mancity-dark-blue: #1C2C5B;
+      --mancity-light-blue: #98C5E9;
+      --white: #FFFFFF;
+      --black: #000000;
+      --gray: #F5F5F5;
+      --pink-accent: #FF69B4;
+      --text-color: #333333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: var(--gray);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    #main-header {
+      background: linear-gradient(to right, var(--mancity-dark-blue), var(--pink-accent));
+      color: var(--white);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    #main-header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #logo img {
+      height: 60px;
+      width: auto;
+      transition: transform 0.3s ease;
+    }
+
+    #logo img:hover {
+      transform: scale(1.05);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 15px;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      position: relative;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      background-color: rgba(255,255,255,0.2);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background-color: var(--white);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    nav a:hover::after {
+      width: 70%;
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .hero {
+      background: #333;
+      color: var(--white);
+      text-align: center;
+      padding: 100px 20px;
+      margin-bottom: 40px;
+      border-radius: 8px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    section {
+      margin: 40px 0;
+      padding: 30px;
+      background-color: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      color: var(--mancity-dark-blue);
+      margin-bottom: 25px;
+      font-size: 2rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(to right, var(--mancity-blue), var(--pink-accent));
+    }
+
+    h3 {
+      color: var(--mancity-blue);
+      margin-bottom: 15px;
+    }
+
+    .team-photo {
+      width: 100%;
+      max-height: 500px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-top: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .player-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .player-card {
+      background-color: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      border: 1px solid #eee;
+    }
+
+    .player-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    .player-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-bottom: 2px solid var(--mancity-blue);
+    }
+
+    .player-card h3 {
+      color: var(--mancity-dark-blue);
+      margin: 15px 0 5px;
+      padding: 0 15px;
+      font-size: 1.2rem;
+    }
+
+    .player-card p {
+      padding: 0 15px 15px;
+      font-size: 0.9rem;
+      color: var(--text-color);
+    }
+
+    .fixtures-list {
+      list-style: none;
+    }
+
+    .fixtures-list li {
+      margin-bottom: 10px;
+    }
+
+    .fixtures-list a {
+      display: block;
+      padding: 15px;
+      background-color: var(--white);
+      border-left: 4px solid var(--pink-accent);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: var(--text-color);
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .fixtures-list a:hover,
+    .fixtures-list a:focus {
+      background-color: var(--mancity-light-blue);
+      color: var(--white);
+      transform: translateX(5px);
+    }
+
+    .fixtures-list strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--mancity-dark-blue);
+    }
+
+    .fixtures-list span {
+      display: block;
+      font-size: 0.9rem;
+      margin-top: 3px;
+    }
+
+    .news-item {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .news-full {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.5s ease;
+    }
+
+    .news-full.show {
+      max-height: 500px;
+    }
+
+    .news-item:last-child {
+      border-bottom: none;
+    }
+
+    .news-date {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .news-excerpt {
+      margin-bottom: 15px;
+    }
+
+    .read-more {
+      display: inline-block;
+      padding: 8px 20px;
+      background-color: var(--pink-accent);
+      color: var(--white);
+      border: none;
+      border-radius: 20px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .read-more:hover,
+    .read-more:focus {
+      background-color: var(--mancity-dark-blue);
+      transform: translateX(5px);
+    }
+
+    address {
+      font-style: normal;
+    }
+
+    address a {
+      color: var(--mancity-blue);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    address a:hover,
+    address a:focus {
+      color: var(--pink-accent);
+      text-decoration: underline;
+    }
+
+    #main-footer {
+      background-color: var(--mancity-dark-blue);
+      color: var(--white);
+      padding: 30px 0;
+      margin-top: 50px;
+    }
+
+    #main-footer .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .social-media {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .social-media a {
+      color: var(--white);
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    .social-media a:hover,
+    .social-media a:focus {
+      background-color: var(--pink-accent);
+      transform: translateY(-3px);
+    }
+
+    .social-media svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    a:focus,
+    button:focus,
+    input:focus {
+      outline: 2px solid var(--pink-accent);
+      outline-offset: 2px;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--mancity-dark-blue);
+      color: white;
+      padding: 8px;
+      z-index: 100;
+      transition: top 0.3s;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+
+    /* ONLY ADDING MOBILE STYLES BELOW - NOT CHANGING ANYTHING ABOVE */
+    @media (max-width: 768px) {
+      #main-header .container {
+        flex-direction: column;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 15px;
+      }
+      
+      .hero {
+        padding: 60px 20px;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1.2rem;
+      }
+      
+      section {
+        padding: 20px;
+        margin: 20px 0;
+      }
+      
+      .player-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+    </style>
+</head>
+<body>
+    <!-- Your complete HTML content remains exactly the same -->
+    <header id="main-header">
+        <div class="container">
+            <div id="logo">
+                <img src="Images/logo.png" alt="Manchester City Women Football Club Logo" loading="lazy">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#squad">Squad</a></li>
+                    <li><a href="#fixtures">Fixtures</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-toggle" aria-label="Mobile menu toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Manchester City Women</h1>
+            <p>Competing at the highest level of women's football</p>
+        </section>
+
+        <section id="about">
+            <h2>About Manchester City Women</h2>
+            <p>
+                Manchester City Women's Football Club is a professional women's football club based in Manchester, England. 
+                Founded in 1988, the team has grown to become one of the most successful clubs in the FA Women's Super League.
+            </p>
+            <p>
+                The team plays its home matches at the Academy Stadium, sharing the City Football Academy training complex with 
+                the men's team. Under the leadership of manager Gareth Taylor, City Women have won multiple domestic trophies 
+                and regularly compete in the UEFA Women's Champions League.
+            </p>
+            <img src="Images/women.webp" alt="Manchester City Women's team celebrating a goal" class="team-photo" loading="lazy">
+        </section>
+
+        <section id="squad">
+            <h2>Meet the Squad</h2>
+            <div class="player-list">
+                <div class="player-card">
+                    <img src="Images/mary.jpg" alt="Mary Fowler - Forward for Manchester City Women" loading="lazy">
+                    <h3>Mary Fowler</h3>
+                    <p>Position: Forward</p>
+                    <p>Nationality: Australia</p>
+                    <p>Age: 21</p>
+                </div>
+                <div class="player-card">
+                    <img src="Images/khadija.jpg" alt="Khadija Shaw - Forward for Manchester City Women" loading="lazy">
+                    <h3>Khadija Shaw</h3>
+                    <p>Position: Forward</p>
+                    <p>Nationality: Jamaica</p>
+                    <p>Age: 27</p>
+                </div>
+                <div class="player-card">
+                    <img src="Images/kelly.jpg" alt="Chloe Kelly - Midfielder for Manchester City Women" loading="lazy">
+                    <h3>Chloe Kelly</h3>
+                    <p>Position: Midfielder</p>
+                    <p>Nationality: England</p>
+                    <p>Age: 26</p>
+                </div>
+                <div class="player-card">
+                    <img src="Images/ladies 2.jpg" alt="Khiara Kheating - Goalkeeper for Manchester City Women" loading="lazy">
+                    <h3>Khiara Kheating</h3>
+                    <p>Position: Goalkeeper</p>
+                    <p>Nationality: England</p>
+                    <p>Age: 26</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="fixtures">
+            <h2>Upcoming Fixtures</h2>
+            <ul class="fixtures-list">
+                <li>
+                    <a href="tickets.html#match1">
+                        <strong>Manchester City Women vs. Chelsea Women</strong>
+                        <span>May 10, 2025 - 15:00</span>
+                        <span>Academy Stadium</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tickets.html#match2">
+                        <strong>Arsenal Women vs. Manchester City Women</strong>
+                        <span>May 17, 2025 - 15:00</span>
+                        <span>Emirates Stadium</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tickets.html#match3">
+                        <strong>Manchester City Women vs. Liverpool Women</strong>
+                        <span>May 24, 2025 - 18:00</span>
+                        <span>Academy Stadium</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>For any inquiries or information regarding Manchester City Women, please get in touch:</p>
+            <address>
+                <p>Email: <a href="mailto:info@manchestercitywomen.com">info@manchestercitywomen.com</a></p>
+                <p>Phone: <a href="tel:+44123456789">+44 (0) 123 456 789</a></p>
+                <p>Address: City Football Academy, Manchester, M11 3FF, UK</p>
+            </address>
+        </section>
+    </main>
+
+    <footer id="main-footer">
+        <div class="container">
+            <p>&copy; <span id="current-year">2025</span> Manchester City Women Football Club. All rights reserved.</p>
+            <div class="social-media">
+                <a href="https://www.facebook.com/mancitywomen" target="_blank" aria-label="Facebook">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/mancitywomen" target="_blank" aria-label="Instagram">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </a>
+                <a href="https://twitter.com/mancitywomen" target="_blank" aria-label="Twitter">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update current year
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>

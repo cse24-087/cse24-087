@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn about Manchester City FC – its history, achievements, and values.">
+  <title>About Manchester City FC</title>
+  <style>
+    /* Base Styles */
+    :root {
+      --sky-blue: #6CABDD;
+      --dark-blue: #1C2C5B;
+      --white: #FFFFFF;
+      --light-gray: #F5F5F5;
+      --medium-gray: #DDDDDD;
+      --dark-gray: #333333;
+      --gold: #FFD700;
+      --red: #FF0000;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background-color: var(--light-gray);
+      color: var(--dark-gray);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 15px;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: var(--dark-blue);
+      color: var(--white);
+      padding: 20px 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 60px;
+      width: auto;
+    }
+
+    .logo h1 {
+      margin-left: 15px;
+      font-size: 1.8rem;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: var(--sky-blue);
+      padding: 15px 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav li {
+      margin: 0 15px;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      transition: color 0.3s;
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    nav a.active {
+      background-color: var(--dark-blue);
+    }
+
+    /* About Page Header */
+    .page-header {
+      background: linear-gradient(rgba(28, 44, 91, 0.8), rgba(28, 44, 91, 0.8)), 
+                  url('../images/etihad-stadium.jpg') center/cover;
+      color: var(--white);
+      text-align: center;
+      padding: 80px 20px;
+      margin-bottom: 40px;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* About Section */
+    .about-section {
+      padding: 40px 0;
+    }
+
+    .about-section h2 {
+      color: var(--dark-blue);
+      font-size: 2rem;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 10px;
+      text-align: center;
+    }
+
+    .about-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background-color: var(--sky-blue);
+    }
+
+    .image-text-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .image-text-wrapper img {
+      flex: 1;
+      min-width: 300px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .image-text-wrapper img:hover {
+      transform: scale(1.02);
+    }
+
+    .text-content {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .text-content p {
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .full-width-image {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      max-width: none;
+      height: auto;
+      display: block;
+      margin: 30px 0;
+    }
+
+    /* History Highlights */
+    .history-highlights {
+      background-color: var(--white);
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin: 40px 0;
+    }
+
+    .history-highlights h3 {
+      color: var(--dark-blue);
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+
+    .highlight-item {
+      display: flex;
+      margin-bottom: 20px;
+      align-items: flex-start;
+    }
+
+    .highlight-year {
+      background-color: var(--sky-blue);
+      color: var(--white);
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-weight: bold;
+      margin-right: 15px;
+      min-width: 80px;
+      text-align: center;
+    }
+
+    .highlight-text {
+      flex: 1;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--dark-blue);
+      color: var(--white);
+      margin-top: 50px;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .logo {
+        margin-bottom: 15px;
+        justify-content: center;
+      }
+      
+      .image-text-wrapper {
+        flex-direction: column;
+      }
+      
+      .text-content, .image-text-wrapper img {
+        min-width: 100%;
+      }
+      
+      .page-header h1 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .highlight-item {
+        flex-direction: column;
+      }
+      
+      .highlight-year {
+        margin-bottom: 10px;
+        margin-right: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container container">
+      <div class="logo">
+        <img src="Images/logo.png" alt="Manchester City FC Logo">
+        <h1>Manchester City FC</h1>
+      </div>
+    </div>
+    
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="players.html">Players</a></li>
+        <li><a href="matches.html">Matches</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Our History & Legacy</h1>
+    </div>
+  </div>
+
+  <main class="container">
+    <section class="about-section">
+      <div class="image-text-wrapper">
+        <img src="Images/gallery1.jpg" alt="Etihad Stadium - Home of Manchester City" class="fade-in">
+
+        <div class="text-content fade-in">
+          <h2>About Manchester City FC</h2>
+          <p>
+            Founded in 1880 as St. Mark's (West Gorton), Manchester City has grown from a local club into one of the most iconic teams in world football. Renamed Manchester City in 1894, the club has a rich history deeply rooted in the heart of Manchester.
+          </p>
+          <p>
+            The Etihad Stadium, their modern home since 2003, stands as a symbol of ambition and progress. With a seating capacity of over 53,000, it's more than just a stadium — it's a fortress where football dreams are built.
+          </p>
+          <p>
+            Under the visionary leadership of manager Pep Guardiola, City has transformed into a global powerhouse. The team is renowned for its dynamic, possession-based style of play, and has secured numerous Premier League titles, domestic cups, and a historic UEFA Champions League title.
+          </p>
+          <p>
+            Off the pitch, Manchester City is committed to community outreach and youth development through the City Football Group. Their influence extends globally, promoting values of teamwork, innovation, and unity.
+          </p>
+          <p>
+            Whether you're a lifelong fan or a newcomer to the sky-blue legacy, Manchester City welcomes everyone to be part of their journey.
+          </p>
+        </div>
+      </div>
+
+      
+
+      <div class="history-highlights fade-in">
+        <h3>Club History Highlights</h3>
+        
+        <div class="highlight-item">
+          <div class="highlight-year">1880</div>
+          <div class="highlight-text">Founded as St. Mark's (West Gorton), later becoming Ardwick Association Football Club in 1887</div>
+        </div>
+        
+        <div class="highlight-item">
+          <div class="highlight-year">1894</div>
+          <div class="highlight-text">Officially renamed Manchester City Football Club</div>
+        </div>
+        
+        <div class="highlight-item">
+          <div class="highlight-year">1937</div>
+          <div class="highlight-text">Won their first First Division title</div>
+        </div>
+        
+        <div class="highlight-item">
+          <div class="highlight-year">1968</div>
+          <div class="highlight-text">Secured their first First Division title in the modern era</div>
+        </div>
+        
+        <div class="highlight-item">
+          <div class="highlight-year">2003</div>
+          <div class="highlight-text">Moved to the City of Manchester Stadium (now Etihad Stadium)</div>
+        </div>
+        
+        <div class="highlight-item">
+          <div class="highlight-year">2008</div>
+          <div class="highlight-text">Acquired by Abu Dhabi United Group, beginning a new era of success</div>
+        </div>
+        
+        <div class="highlight-item">
+          <div class="highlight-year">2012</div>
+          <div class="highlight-text">Won their first Premier League title in dramatic fashion with Aguero's last-minute goal</div>
+        </div>
+        
+        <div class="highlight-item">
+          <div class="highlight-year">2023</div>
+          <div class="highlight-text">Achieved the historic Treble - Premier League, FA Cup, and Champions League</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Manchester City FC. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function showAlert() {
+      alert("You're already on the About page of Manchester City FC!");
+      return false;
+    }
+    
+    // Add active class to current page link
+    document.querySelector('nav a[href="about.html"]').addEventListener('click', showAlert);
+    
+    // Add fade-in effect to elements as they come into view
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    fadeElements.forEach(el => {
+      el.style.opacity = 0;
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+      fadeObserver.observe(el);
+    });
+  </script>
+</body>
+</html>

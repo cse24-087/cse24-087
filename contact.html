@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Manchester City FC</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="players.html">Players</a>
+      <a href="matches.html">Matches</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Contact Us</h2>
+    <form id="contactForm">
+      <label>Name:<input type="text" id="name" required></label><br>
+      <label>Email:<input type="email" id="email" required></label><br>
+      <label>Message:<textarea id="message" required></textarea></label><br>
+      <button type="submit">Send</button>
+    </form>
+    <p id="feedbackMsg"></p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Manchester City FC</p>
+  </footer>
+
+  <!-- Functional Form Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('contactForm');
+      const feedbackMsg = document.getElementById('feedbackMsg');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (!name || !email || !message) {
+          feedbackMsg.style.color = 'red';
+          feedbackMsg.textContent = 'Please fill in all fields.';
+          return;
+        }
+
+        feedbackMsg.style.color = 'green';
+        feedbackMsg.textContent = `Thanks, ${name}! Your message has been received.`;
+
+        form.reset();
+      });
+    });
+  </script>
+</body>

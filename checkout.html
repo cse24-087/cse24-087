@@ -1,0 +1,90 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Checkout</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    .order-summary {
+      margin-top: 1.5rem;
+      border-top: 1px solid #ccc;
+      padding-top: 1rem;
+    }
+    .item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    .total {
+      font-weight: bold;
+      text-align: right;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
+    .thankyou {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 1.4rem;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1>Checkout</h1>
+
+  <div class="order-summary" id="order-summary">
+    <!-- Items will be inserted here by JS -->
+  </div>
+
+  <div class="thankyou">Thank you for your purchase!</div>
+
+  <script>
+    // Example cart data - replace with real data passed from main page or backend
+    const cart = [
+      { name: "Item 1", price: 19.99, quantity: 2 },
+      { name: "Item 2", price: 9.99, quantity: 1 },
+      { name: "Item 3", price: 14.5, quantity: 3 }
+    ];
+
+    const summaryEl = document.getElementById('order-summary');
+    
+    if (cart.length === 0) {
+      summaryEl.innerHTML = '<p>Your cart is empty.</p>';
+    } else {
+      let total = 0;
+      cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'item';
+        itemDiv.innerHTML = `
+          <span>${item.name} x${item.quantity}</span>
+          <span>$${itemTotal.toFixed(2)}</span>
+        `;
+        summaryEl.appendChild(itemDiv);
+      });
+
+      const totalDiv = document.createElement('div');
+      totalDiv.className = 'total';
+      totalDiv.textContent = `Total: $${total.toFixed(2)}`;
+      summaryEl.appendChild(totalDiv);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manchester City FC | Matches</title>
+  <style>
+    /* Base Styles */
+    :root {
+      --sky-blue: #6CABDD;
+      --dark-blue: #1C2C5B;
+      --white: #FFFFFF;
+      --light-gray: #F5F5F5;
+      --medium-gray: #DDDDDD;
+      --dark-gray: #333333;
+      --gold: #FFD700;
+      --red: #FF0000;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background-color: var(--light-gray);
+      color: var(--dark-gray);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 15px;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: var(--dark-blue);
+      color: var(--white);
+      padding: 20px 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 60px;
+      width: auto;
+    }
+
+    .logo h1 {
+      margin-left: 15px;
+      font-size: 1.8rem;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: var(--sky-blue);
+      padding: 15px 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav li {
+      margin: 0 15px;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      transition: color 0.3s;
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    nav a.active {
+      background-color: var(--dark-blue);
+    }
+
+    /* Matches Page Header */
+    .page-header {
+      background: linear-gradient(rgba(28, 44, 91, 0.8), rgba(28, 44, 91, 0.8)), 
+                  url('../images/etihad-stadium.jpg') center/cover;
+      color: var(--white);
+      text-align: center;
+      padding: 80px 20px;
+      margin-bottom: 40px;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Tab Buttons */
+    .tab-buttons {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+      gap: 10px;
+    }
+
+    .tab-buttons button {
+      background-color: var(--dark-blue);
+      color: var(--white);
+      border: none;
+      padding: 12px 25px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .tab-buttons button:hover {
+      background-color: var(--sky-blue);
+    }
+
+    .tab-buttons button.active {
+      background-color: var(--sky-blue);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Match Sections */
+    .match-section {
+      display: none;
+      animation: fadeIn 0.7s ease forwards;
+    }
+
+    .match-section.active {
+      display: block;
+    }
+
+    .match-section h2 {
+      color: var(--dark-blue);
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 2rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .match-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background-color: var(--sky-blue);
+    }
+
+    /* Match List */
+    .match-list {
+      list-style: none;
+      padding-left: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 20px;
+    }
+
+    .match-list li {
+      background: var(--white);
+      padding: 20px;
+      border-left: 5px solid var(--sky-blue);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 5px;
+    }
+
+    .match-list li:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      border-left-color: var(--gold);
+    }
+
+    .match-list strong {
+      color: var(--dark-blue);
+      font-size: 1.1rem;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--dark-blue);
+      color: var(--white);
+      margin-top: 50px;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .logo {
+        margin-bottom: 15px;
+        justify-content: center;
+      }
+      
+      .tab-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .match-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container container">
+      <div class="logo">
+        <img src="Images/logo.png" alt="Manchester City FC Logo">
+        <h1>Manchester City FC</h1>
+      </div>
+    </div>
+    
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="players.html">Players</a></li>
+        <li><a href="matches.html" class="active">Matches</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Upcoming Fixtures & Results</h1>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="tab-buttons">
+      <button class="tab-link active" onclick="switchTab('upcoming')">Upcoming</button>
+      <button class="tab-link" onclick="switchTab('recent')">Recent</button>
+    </div>
+
+    <div class="match-section active" id="upcoming">
+      <h2>Upcoming Matches</h2>
+      <ul class="match-list">
+        <li>
+          <strong>Man City vs Real Madrid</strong>
+          <span>May 10, 2025</span>
+          <span>UEFA Champions League</span>
+          <span>Etihad Stadium</span>
+        </li>
+        <li>
+          <strong>Man City vs Arsenal</strong>
+          <span>May 15, 2025</span>
+          <span>Premier League</span>
+          <span>Etihad Stadium</span>
+        </li>
+        <li>
+          <strong>Man City vs Liverpool</strong>
+          <span>May 20, 2025</span>
+          <span>FA Cup Final</span>
+          <span>Wembley Stadium</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="match-section" id="recent">
+      <h2>Recent Matches</h2>
+      <ul class="match-list">
+        <li>
+          <strong>Man City 3-1 Chelsea</strong>
+          <span>April 30, 2025</span>
+          <span>Premier League</span>
+          <span>Etihad Stadium</span>
+        </li>
+        <li>
+          <strong>Man City 2-0 Manchester United</strong>
+          <span>April 25, 2025</span>
+          <span>FA Cup Semi-final</span>
+          <span>Wembley Stadium</span>
+        </li>
+        <li>
+          <strong>Man City 4-0 Newcastle</strong>
+          <span>April 15, 2025</span>
+          <span>Premier League</span>
+          <span>Etihad Stadium</span>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Manchester City FC. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function switchTab(tabId) {
+      // Remove active class from all tab buttons
+      document.querySelectorAll('.tab-link').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      // Remove active class from all sections
+      document.querySelectorAll('.match-section').forEach(section => {
+        section.classList.remove('active');
+      });
+      
+      // Add active class to clicked tab and corresponding section
+      document.querySelector(`#${tabId}`).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+  </script>
+</body>
+</html>

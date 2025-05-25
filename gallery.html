@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gallery - Manchester City FC</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Header Styles */
+    header {
+      background-color: #1C2C5B;
+      padding: 20px 0;
+      color: white;
+      border-bottom: 5px solid #6CABDD;
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+
+    #logo img {
+      height: 60px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    nav {
+      background-color: #6CABDD;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+
+    nav li {
+      margin: 0;
+    }
+
+    nav a {
+      display: block;
+      padding: 15px 20px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      background-color: #1C2C5B;
+    }
+
+    /* Gallery Slideshow Styles */
+    main {
+      background-color: #f5f5f5;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .slideshow-container {
+      position: relative;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .slide {
+      display: none;
+    }
+
+    .slide img {
+      width: 100%;
+      border: 5px solid #6CABDD;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 12px;
+      margin-top: -22px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 3px;
+      user-select: none;
+      background-color: rgba(0,0,0,0.5);
+      transition: 0.3s;
+    }
+
+    .next {
+      right: 0;
+    }
+
+    .prev {
+      left: 0;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .dots {
+      margin-top: 15px;
+    }
+
+    .dot {
+      height: 12px;
+      width: 12px;
+      margin: 0 5px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.3s;
+    }
+
+    .dot.active {
+      background-color: #1C2C5B;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1C2C5B;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div id="logo">
+        <img src="Images/logo.png" alt="Manchester City FC Logo" />
+      </div>
+      <h1>Manchester City FC</h1>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="players.html">Players</a></li>
+        <li><a href="matches.html">Matches</a></li>
+        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="citywomen.html">City Ladies</a></li>
+        <li><a href="shop/shop.html">Shop</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2 style="color: #1C2C5B;">Club Gallery</h2>
+    <div class="slideshow-container">
+
+      <div class="slide">
+        <img src="Images/gallery1.jpg" alt=" Image 1">
+      </div>
+
+      <div class="slide">
+        <img src="Images/gallery 2.jpg" alt=" Image 2">
+      </div>
+
+      <div class="slide">
+        <img src="Images/gallery3.jpg" alt="Image 3">
+      </div>
+
+      <div class="slide">
+        <img src="Images/gallery4.jpg" alt="Image 4">
+      </div>
+
+      <div class="slide">
+        <img src="Images/gallery4.jpg" alt="Image 4">
+      </div> 
+
+      <div class="slide">
+        <img src="Images/big.jpg" alt="Image 5">
+      </div>
+
+      <div class="slide">
+        <img src="Images/uefa.jpg" alt="Image 6">
+      </div>
+
+      <div class="slide">
+        <img src="Images/old.jpg" alt="Image 7">
+      </div>
+
+      <div class="slide">
+        <img src="Images/ladies 1.jpg" alt="Image 8">
+      </div>
+
+     <div class="slide">
+        <img src="Images/ladies 4.jpg" alt="Image 9">
+      </div>
+
+    <div class="slide">
+        <img src="Images/ladies team.jpg" alt="Image 10">
+      </div>
+
+
+
+
+
+      <!-- Arrows -->
+      <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+      <a class="next" onclick="changeSlide(1)">&#10095;</a>
+    </div>
+
+    <!-- Dots -->
+    <div class="dots">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+      <span class="dot" onclick="currentSlide(4)"></span>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Manchester City FC. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function changeSlide(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      let i;
+      const slides = document.getElementsByClassName("slide");
+      const dots = document.getElementsByClassName("dot");
+
+      if (n > slides.length) { slideIndex = 1; }
+      if (n < 1) { slideIndex = slides.length; }
+
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+
+      for (i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].classList.add("active");
+    }
+  </script>
+
+</body>
+</html>
