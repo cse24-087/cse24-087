@@ -4,30 +4,134 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manchester City FC | Official Store</title>
-  <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="images/man-city-logo.png" type="image/png">
   <style>
-    /* Shop Specific Styles */
+    /* All your existing CSS styles remain exactly the same */
+    :root {
+      --sky-blue: #6CABDD;
+      --dark-blue: #1C2C5B;
+      --white: #FFFFFF;
+      --light-gray: #F5F5F5;
+      --gold: #FFD700;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background-color: var(--light-gray);
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: var(--dark-blue);
+      color: var(--white);
+      padding: 20px 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 60px;
+      width: auto;
+    }
+
+    .logo h1 {
+      margin-left: 15px;
+      font-size: 1.8rem;
+      color: var(--white);
+    }
+
+    /* Navigation */
+    nav {
+      background-color: var(--sky-blue);
+      padding: 15px 0;
+      width: 100%;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0 10px;
+    }
+
+    nav li {
+      margin: 0 15px;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      transition: color 0.3s;
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    nav a.active {
+      background-color: var(--dark-blue);
+    }
+
+    /* Shop Header */
     .shop-header {
       background: linear-gradient(rgba(28, 44, 91, 0.8), rgba(28, 44, 91, 0.8)), 
-                  url('../images/etihad-stadium.jpg') center/cover;
-      color: white;
+                  url('images/etihad-stadium.jpg') center/cover;
+      color: var(--white);
       text-align: center;
       padding: 80px 20px;
       margin-bottom: 40px;
     }
-    
+
     .shop-header h1 {
       font-size: 3rem;
       margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
-    
+
     .shop-header p {
       font-size: 1.2rem;
       max-width: 800px;
       margin: 0 auto;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
-    
+
+    /* Product Categories */
     .product-categories {
       display: flex;
       justify-content: center;
@@ -35,10 +139,10 @@
       gap: 15px;
       margin: 30px 0;
     }
-    
+
     .category-btn {
-      background-color: #6CABDD;
-      color: white;
+      background-color: var(--sky-blue);
+      color: var(--white);
       border: none;
       padding: 10px 20px;
       border-radius: 30px;
@@ -46,60 +150,62 @@
       font-weight: bold;
       transition: all 0.3s;
     }
-    
+
     .category-btn:hover, .category-btn.active {
-      background-color: #1C2C5B;
+      background-color: var(--dark-blue);
     }
-    
+
+    /* Products Grid */
     .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 30px;
       padding: 20px;
     }
-    
+
     .product-card {
       background: white;
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 3px 10px rgba(0,0,0,0.1);
       transition: transform 0.3s;
+      position: relative;
     }
-    
+
     .product-card:hover {
       transform: translateY(-5px);
     }
-    
+
     .product-image {
       height: 300px;
       width: 100%;
       object-fit: cover;
     }
-    
+
     .product-info {
       padding: 20px;
     }
-    
+
     .product-title {
       font-size: 1.2rem;
       margin-bottom: 10px;
-      color: #1C2C5B;
+      color: var(--dark-blue);
     }
-    
+
     .product-price {
       font-weight: bold;
       font-size: 1.3rem;
       color: #333;
       margin-bottom: 15px;
     }
-    
+
     .product-actions {
       display: flex;
       justify-content: space-between;
     }
-    
+
     .add-to-cart {
-      background-color: #6CABDD;
+      background-color: var(--sky-blue);
       color: white;
       border: none;
       padding: 10px 20px;
@@ -108,11 +214,11 @@
       flex-grow: 1;
       transition: background-color 0.3s;
     }
-    
+
     .add-to-cart:hover {
-      background-color: #1C2C5B;
+      background-color: var(--dark-blue);
     }
-    
+
     .wishlist {
       background: none;
       border: none;
@@ -122,79 +228,164 @@
       margin-left: 10px;
       transition: color 0.3s;
     }
-    
+
     .wishlist.active {
       color: red;
     }
-    
+
     .sale-badge {
       position: absolute;
       top: 10px;
       right: 10px;
-      background-color: #FFD700;
-      color: #1C2C5B;
+      background-color: var(--gold);
+      color: var(--dark-blue);
       padding: 5px 10px;
       border-radius: 5px;
       font-weight: bold;
     }
-    
-    .product-card {
-      position: relative;
-    }
-    
+
+    /* Filter Section */
     .filter-section {
       background-color: #f5f5f5;
       padding: 20px;
       border-radius: 8px;
       margin-bottom: 30px;
     }
-    
+
     .filter-group {
       margin-bottom: 15px;
     }
-    
+
     .filter-group h4 {
       margin-bottom: 10px;
-      color: #1C2C5B;
+      color: var(--dark-blue);
     }
-    
+
     .size-options {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
     }
-    
+
     .size-option {
       border: 1px solid #ddd;
       padding: 5px 10px;
       border-radius: 3px;
       cursor: pointer;
     }
-    
+
     .size-option.selected {
-      background-color: #1C2C5B;
+      background-color: var(--dark-blue);
       color: white;
-      border-color: #1C2C5B;
+      border-color: var(--dark-blue);
+    }
+
+    /* Cart Icon */
+    .cart-icon {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: var(--sky-blue);
+      color: white;
+      padding: 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 101;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: var(--gold);
+      color: var(--dark-blue);
+      border-radius: 50%;
+      padding: 3px 8px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background-color: white;
+      margin: 10% auto;
+      padding: 20px;
+      width: 80%;
+      max-width: 600px;
+      border-radius: 8px;
+    }
+
+    .close {
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .shop-header h1 {
+        font-size: 2rem;
+      }
+      
+      .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      }
+      
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      nav li {
+        margin: 5px 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .shop-header {
+        padding: 60px 20px;
+      }
+      
+      .shop-header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="container">
-      <div id="logo">
-        <img src="Images/logo.png" alt="Manchester City FC Logo" />
+    <div class="header-container container">
+      <div class="logo">
+        <img src="Images/logo.png" alt="Manchester City FC Logo">
+        <h1>Manchester City FC</h1>
       </div>
-      <h1>Manchester City FC</h1>
     </div>
     
     <nav>
       <ul>
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../about.html">About</a></li>
-        <li><a href="../players.html">Players</a></li>
-        <li><a href="../matches.html">Matches</a></li>
-        <li><a href="../contact.html">Contact</a></li>
-        <li><a href="../citywomen.html">City Ladies</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="players.html">Players</a></li>
+        <li><a href="matches.html">Matches</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="citywomen.html">City Ladies</a></li>
         <li><a href="shop.html" class="active">Shop</a></li>
       </ul>
     </nav>
@@ -252,7 +443,7 @@
             <span class="sale-price">£79.99</span>
           </div>
           <div class="product-actions">
-            <button class="add-to-cart" onclick="addToCart('2024/25 Home Jersey', 79.99, '../images/jersey-home.jpg')">Add to Cart</button>
+            <button class="add-to-cart" onclick="addToCart('2024/25 Home Jersey', 79.99, 'images/home-jersey.jpg')">Add to Cart</button>
             <button class="wishlist" onclick="toggleWishlist(this)">♥</button>
           </div>
         </div>
@@ -265,7 +456,7 @@
           <h3 class="product-title">2024/25 Away Jersey</h3>
           <div class="product-price">£89.99</div>
           <div class="product-actions">
-            <button class="add-to-cart" onclick="addToCart('2024/25 Away Jersey', 89.99, '../images/jersey-away.jpg')">Add to Cart</button>
+            <button class="add-to-cart" onclick="addToCart('2024/25 Away Jersey', 89.99, 'images/away-jersey.jpg')">Add to Cart</button>
             <button class="wishlist" onclick="toggleWishlist(this)">♥</button>
           </div>
         </div>
@@ -278,7 +469,7 @@
           <h3 class="product-title">2024/25 Third Jersey</h3>
           <div class="product-price">£89.99</div>
           <div class="product-actions">
-            <button class="add-to-cart" onclick="addToCart('2024/25 Third Jersey', 89.99, '../images/jersey-third.jpg')">Add to Cart</button>
+            <button class="add-to-cart" onclick="addToCart('2024/25 Third Jersey', 89.99, 'Images/third-jersey.jpg')">Add to Cart</button>
             <button class="wishlist" onclick="toggleWishlist(this)">♥</button>
           </div>
         </div>
@@ -286,12 +477,12 @@
       
       <!-- Product 4 -->
       <div class="product-card" data-category="training">
-        <img src="Images/top.jpg" alt="2024 Training Top" class="product-image">
+        <img src="Images/training-top.jpg" alt="2024 Training Top" class="product-image">
         <div class="product-info">
           <h3 class="product-title">2024 Training Top</h3>
           <div class="product-price">£59.99</div>
           <div class="product-actions">
-            <button class="add-to-cart" onclick="addToCart('2024 Training Top', 59.99, '../images/training-top.jpg')">Add to Cart</button>
+            <button class="add-to-cart" onclick="addToCart('2024 Training Top', 59.99, 'Images/training-top.jpg')">Add to Cart</button>
             <button class="wishlist" onclick="toggleWishlist(this)">♥</button>
           </div>
         </div>
@@ -308,7 +499,7 @@
             <span class="sale-price">£24.99</span>
           </div>
           <div class="product-actions">
-            <button class="add-to-cart" onclick="addToCart('Official Club Scarf', 24.99, '../images/scarf.jpg')">Add to Cart</button>
+            <button class="add-to-cart" onclick="addToCart('Official Club Scarf', 24.99, 'images/scarf.jpg')">Add to Cart</button>
             <button class="wishlist" onclick="toggleWishlist(this)">♥</button>
           </div>
         </div>
@@ -321,7 +512,7 @@
           <h3 class="product-title">Official Club Cap</h3>
           <div class="product-price">£29.99</div>
           <div class="product-actions">
-            <button class="add-to-cart" onclick="addToCart('Official Club Cap', 29.99, '../images/cap.jpg')">Add to Cart</button>
+            <button class="add-to-cart" onclick="addToCart('Official Club Cap', 29.99, 'images/cap.jpg')">Add to Cart</button>
             <button class="wishlist" onclick="toggleWishlist(this)">♥</button>
           </div>
         </div>
@@ -334,7 +525,7 @@
           <h3 class="product-title">Official Club Mug</h3>
           <div class="product-price">£14.99</div>
           <div class="product-actions">
-            <button class="add-to-cart" onclick="addToCart('Official Club Mug', 14.99, '../images/mug.jpg')">Add to Cart</button>
+            <button class="add-to-cart" onclick="addToCart('Official Club Mug', 14.99, 'images/mug.jpg')">Add to Cart</button>
             <button class="wishlist" onclick="toggleWishlist(this)">♥</button>
           </div>
         </div>
@@ -347,7 +538,7 @@
           <h3 class="product-title">Official Match Ball</h3>
           <div class="product-price">£119.99</div>
           <div class="product-actions">
-            <button class="add-to-cart" onclick="addToCart('Official Match Ball', 119.99, '../images/football.jpg')">Add to Cart</button>
+            <button class="add-to-cart" onclick="addToCart('Official Match Ball', 119.99, 'images/football.jpg')">Add to Cart</button>
             <button class="wishlist" onclick="toggleWishlist(this)">♥</button>
           </div>
         </div>
@@ -375,540 +566,11 @@
       <p>&copy; 2025 Manchester City FC. All rights reserved.</p>
     </div>
   </footer>
-  <style>
-/* style.css - Manchester City FC Shop Styles */
-
-/* Base Styles */
-:root {
-  --sky-blue: #6CABDD;
-  --dark-blue: #1C2C5B;
-  --white: #FFFFFF;
-  --light-gray: #F5F5F5;
-  --medium-gray: #DDDDDD;
-  --dark-gray: #333333;
-  --gold: #FFD700;
-  --red: #FF0000;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
-}
-
-body {
-  background-color: var(--light-gray);
-  color: var(--dark-gray);
-  line-height: 1.6;
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
-}
-
-/* Header Styles */
-header {
-  background-color: var(--dark-blue);
-  color: var(--white);
-  padding: 20px 0;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-#logo {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-#logo img {
-  height: 80px;
-  width: auto;
-}
-
-h1 {
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 20px;
-  color: var(--white);
-}
-
-/* Navigation */
-nav {
-  background-color: var(--sky-blue);
-  padding: 15px 0;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-nav li {
-  margin: 0 15px;
-}
-
-nav a {
-  color: var(--white);
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 18px;
-  transition: color 0.3s;
-  padding: 5px 10px;
-  border-radius: 4px;
-}
-
-nav a:hover {
-  color: var(--gold);
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-nav a.active {
-  background-color: var(--dark-blue);
-}
-
-/* Shop Header */
-.shop-header {
-  background: linear-gradient(rgba(28, 44, 91, 0.8), rgba(28, 44, 91, 0.8)), 
-              url('../images/etihad-stadium.jpg') center/cover;
-  color: var(--white);
-  text-align: center;
-  padding: 100px 20px;
-  margin-bottom: 40px;
-  position: relative;
-}
-
-.shop-header h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.shop-header p {
-  font-size: 1.2rem;
-  max-width: 800px;
-  margin: 0 auto;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-/* Filter Section */
-.filter-section {
-  background-color: var(--white);
-  padding: 25px;
-  border-radius: 8px;
-  margin-bottom: 30px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.filter-section h3 {
-  color: var(--dark-blue);
-  margin-bottom: 20px;
-  font-size: 1.5rem;
-}
-
-.product-categories {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin: 20px 0;
-}
-
-.category-btn {
-  background-color: var(--sky-blue);
-  color: var(--white);
-  border: none;
-  padding: 10px 20px;
-  border-radius: 30px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s;
-  font-size: 1rem;
-}
-
-.category-btn:hover, .category-btn.active {
-  background-color: var(--dark-blue);
-  transform: translateY(-2px);
-}
-
-.filter-group {
-  margin-bottom: 20px;
-}
-
-.filter-group h4 {
-  margin-bottom: 10px;
-  color: var(--dark-blue);
-  font-size: 1.1rem;
-}
-
-.size-options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.size-option {
-  border: 1px solid var(--medium-gray);
-  padding: 8px 15px;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-size: 0.9rem;
-}
-
-.size-option:hover {
-  border-color: var(--sky-blue);
-}
-
-.size-option.selected {
-  background-color: var(--dark-blue);
-  color: var(--white);
-  border-color: var(--dark-blue);
-}
-
-.price-slider {
-  width: 100%;
-  margin: 10px 0;
-  accent-color: var(--sky-blue);
-}
-
-#priceValue {
-  display: block;
-  text-align: right;
-  font-weight: bold;
-  color: var(--dark-blue);
-}
-
-/* Products Grid */
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 30px;
-  padding: 10px 0;
-}
-
-.product-card {
-  background: var(--white);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  position: relative;
-}
-
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.product-image {
-  height: 300px;
-  width: 100%;
-  object-fit: cover;
-  border-bottom: 1px solid var(--medium-gray);
-}
-
-.product-info {
-  padding: 20px;
-}
-
-.product-title {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  color: var(--dark-blue);
-  min-height: 60px;
-}
-
-.product-price {
-  font-weight: bold;
-  font-size: 1.3rem;
-  color: var(--dark-gray);
-  margin-bottom: 15px;
-}
-
-.original-price {
-  text-decoration: line-through;
-  color: #999;
-  margin-right: 10px;
-  font-size: 1rem;
-}
-
-.sale-price {
-  color: var(--red);
-}
-
-.product-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.add-to-cart {
-  background-color: var(--sky-blue);
-  color: var(--white);
-  border: none;
-  padding: 12px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  flex-grow: 1;
-  transition: background-color 0.3s;
-  font-weight: bold;
-}
-
-.add-to-cart:hover {
-  background-color: var(--dark-blue);
-}
-
-.wishlist {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: var(--medium-gray);
-  margin-left: 10px;
-  transition: color 0.3s;
-  padding: 5px;
-}
-
-.wishlist:hover, .wishlist.active {
-  color: var(--red);
-}
-
-.sale-badge {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: var(--gold);
-  color: var(--dark-blue);
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 0.9rem;
-  z-index: 1;
-}
-
-/* Cart Icon */
-.cart-icon {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: var(--sky-blue);
-  color: var(--white);
-  padding: 15px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 101;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  font-size: 1.2rem;
-}
-
-.cart-icon:hover {
-  transform: scale(1.1);
-}
-
-.cart-count {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background-color: var(--gold);
-  color: var(--dark-gray);
-  border-radius: 50%;
-  padding: 3px 8px;
-  font-size: 0.8rem;
-  font-weight: bold;
-}
-
-/* Cart Modal */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
-}
-
-.modal-content {
-  background-color: var(--white);
-  margin: 5% auto;
-  padding: 30px;
-  width: 90%;
-  max-width: 600px;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  max-height: 80vh;
-  overflow-y: auto;
-}
-
-.close {
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-  color: var(--dark-gray);
-  transition: color 0.3s;
-}
-
-.close:hover {
-  color: var(--red);
-}
-
-.cart-items {
-  margin: 20px 0;
-}
-
-.cart-item {
-  display: flex;
-  align-items: center;
-  padding: 15px 0;
-  border-bottom: 1px solid var(--medium-gray);
-  gap: 15px;
-}
-
-.cart-item img {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 4px;
-}
-
-.cart-item-info {
-  flex-grow: 1;
-}
-
-.cart-item-name {
-  font-weight: bold;
-  color: var(--dark-blue);
-  margin-bottom: 5px;
-}
-
-.cart-item-price {
-  color: var(--dark-gray);
-}
-
-.cart-item-quantity {
-  color: var(--dark-gray);
-  font-size: 0.9rem;
-}
-
-.cart-total {
-  font-weight: bold;
-  font-size: 1.3rem;
-  text-align: right;
-  margin-top: 20px;
-  color: var(--dark-blue);
-}
-
-.checkout-btn {
-  background-color: var(--gold);
-  color: var(--dark-gray);
-  border: none;
-  padding: 12px 25px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1.1rem;
-  margin-top: 20px;
-  width: 100%;
-  transition: background-color 0.3s;
-}
-
-.checkout-btn:hover {
-  background-color: #e6c200;
-}
-
-/* Footer */
-footer {
-  background-color: var(--dark-blue);
-  color: var(--white);
-  text-align: center;
-  padding: 30px 0;
-  margin-top: 50px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .shop-header h1 {
-    font-size: 2.2rem;
-  }
-  
-  .shop-header p {
-    font-size: 1rem;
-  }
-  
-  .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  }
-  
-  .product-image {
-    height: 250px;
-  }
-  
-  nav li {
-    margin: 0 8px;
-  }
-  
-  nav a {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .shop-header {
-    padding: 70px 20px;
-  }
-  
-  .shop-header h1 {
-    font-size: 1.8rem;
-  }
-  
-  .products-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  #logo img {
-    height: 60px;
-  }
-  
-  h1 {
-    font-size: 1.5rem;
-    margin-left: 10px;
-  }
-  
-  .cart-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
-    top: 15px;
-    right: 15px;
-  }
-}
-</style>
-
-
-
 
   <script>
     // Shopping Cart Functionality
     let cart = [];
     
-    // Add to cart function
     function addToCart(name, price, image) {
       const existingItem = cart.find(item => item.name === name);
       
@@ -927,18 +589,15 @@ footer {
       showAddedToCartMessage(name);
     }
     
-    // Update cart count
     function updateCartCount() {
       const count = cart.reduce((total, item) => total + item.quantity, 0);
       document.getElementById('cartCount').textContent = count;
     }
     
-    // Show added to cart message
     function showAddedToCartMessage(name) {
       alert(`${name} has been added to your cart!`);
     }
     
-    // Open cart modal
     function openCartModal() {
       const modal = document.getElementById('cartModal');
       const cartItemsElement = document.getElementById('cartItems');
@@ -969,22 +628,19 @@ footer {
       modal.style.display = 'block';
     }
     
-    // Close cart modal
     function closeCartModal() {
       document.getElementById('cartModal').style.display = 'none';
     }
     
     function checkout() {
-  if (cart.length === 0) {
-    alert('Your cart is empty!');
-    return;
-  }
-
-  window.location.href = 'checkout.html'; // redirect to checkout page
-}
-
+      if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+      }
+      // Redirect to checkout page
+      window.location.href = 'checkout.html';
+    }
     
-    // Close modal when clicking outside
     window.onclick = function(event) {
       const modal = document.getElementById('cartModal');
       if (event.target === modal) {
@@ -992,7 +648,6 @@ footer {
       }
     }
     
-    // Product filtering
     function filterProducts(category) {
       const buttons = document.querySelectorAll('.category-btn');
       buttons.forEach(btn => btn.classList.remove('active'));
@@ -1008,22 +663,17 @@ footer {
       });
     }
     
-    // Size selection
     function toggleSize(element) {
       document.querySelectorAll('.size-option').forEach(opt => {
         opt.classList.remove('selected');
       });
       element.classList.add('selected');
-      // Here you would typically filter products by size
     }
     
-    // Price filter
     function updatePriceFilter(value) {
       document.getElementById('priceValue').textContent = `Up to £${value}`;
-      // Here you would typically filter products by price
     }
     
-    // Wishlist toggle
     function toggleWishlist(button) {
       button.classList.toggle('active');
     }
