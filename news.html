@@ -1,425 +1,563 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Manchester City FC | Matches</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Latest news and updates from Manchester City FC">
+  <title>Manchester City FC | News</title>
+  <style>
+    /* Consistent with about.html styles */
+    :root {
+      --sky-blue: #6CABDD;
+      --dark-blue: #1C2C5B;
+      --white: #FFFFFF;
+      --light-gray: #F5F5F5;
+      --medium-gray: #DDDDDD;
+      --dark-gray: #333333;
+      --gold: #FFD700;
+      --red: #FF0000;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background-color: var(--light-gray);
+      color: var(--dark-gray);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 15px;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: var(--dark-blue);
+      color: var(--white);
+      padding: 20px 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 60px;
+      width: auto;
+    }
+
+    .logo h1 {
+      margin-left: 15px;
+      font-size: 1.8rem;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: var(--sky-blue);
+      padding: 15px 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav li {
+      margin: 0 15px;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      transition: color 0.3s;
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    nav a.active {
+      background-color: var(--dark-blue);
+    }
+
+    /* Page Header */
+    .page-header {
+      background: linear-gradient(rgba(28, 44, 91, 0.8), rgba(28, 44, 91, 0.8)), 
+                  url('Images/news-header.jpg') center/cover;
+      color: var(--white);
+      text-align: center;
+      padding: 80px 20px;
+      margin-bottom: 40px;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* News Section */
+    .news-section {
+      padding: 40px 0;
+    }
+
+    .section-title {
+      color: var(--dark-blue);
+      font-size: 2rem;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 10px;
+      text-align: center;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background-color: var(--sky-blue);
+    }
+
+    /* News Grid */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    .news-card {
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .news-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .news-content {
+      padding: 20px;
+    }
+
+    .news-date {
+      color: var(--sky-blue);
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .news-title {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: var(--dark-blue);
+    }
+
+    .news-excerpt {
+      color: var(--dark-gray);
+      margin-bottom: 15px;
+      line-height: 1.7;
+    }
+
+    .read-more {
+      color: var(--dark-blue);
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      transition: color 0.3s;
+    }
+
+    .read-more:hover {
+      color: var(--sky-blue);
+    }
+
+    .full-news-content {
+      display: none;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid var(--medium-gray);
+      color: var(--dark-gray);
+      line-height: 1.7;
+    }
+
+    /* Newsletter */
+    .newsletter {
+      background-color: var(--dark-blue);
+      color: var(--white);
+      padding: 40px 20px;
+      text-align: center;
+      margin: 40px 0;
+      border-radius: 8px;
+    }
+
+    .newsletter h2 {
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+    }
+
+    .newsletter p {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+
+    .newsletter-form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .newsletter-input {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    .newsletter-btn {
+      background-color: var(--sky-blue);
+      color: var(--white);
+      border: none;
+      padding: 12px 30px;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    .newsletter-btn:hover {
+      background-color: #5a9acf;
+    }
+
+    #newsletter-message {
+      width: 100%;
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px;
+      background-color: var(--dark-blue);
+      color: var(--white);
+      margin-top: 50px;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .logo {
+        margin-bottom: 15px;
+        justify-content: center;
+      }
+      
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .page-header h1 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav li {
+        margin: 0 8px;
+      }
+      
+      nav a {
+        font-size: 16px;
+        padding: 5px 8px;
+      }
+      
+      .newsletter-form {
+        flex-direction: column;
+      }
+      
+      .newsletter-btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="logo">Manchester City FC</div>
-    <nav class="site-nav">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="players.html">Players</a>
-      <a href="news.html" >News</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+  <header>
+    <div class="header-container container">
+      <div class="logo">
+        <img src="Images/logo.png" alt="Manchester City FC Logo">
+        <h1>Manchester City FC</h1>
+      </div>
+    </div>
     
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="players.html">Players</a></li>
+        <li><a href="matches.html">Matches</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="citywomen.html">City Ladies</a></li>
+        <li><a href="signup.html">Sign In</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="news.html" class="active">News</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+      </ul>
+    </nav>
   </header>
 
-
-
-
-<style>
-         /* Base Styles */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header Styles */
-        .global-nav {
-            background-color: #1C2D56;
-            padding: 1rem 0;
-        }
-        
-        .global-nav__inner-wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-        
-        .global-nav__logo {
-            height: 40px;
-            width: auto;
-        }
-        
-        /* Player Banner */
-        .player-banner {
-            background-color: #6CADDF;
-            height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 30px;
-        }
-        
-        /* News Section */
-        .news-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .news-header h1 {
-            color: #1C2D56;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        
-        .news-card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .news-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .news-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .news-content {
-            padding: 20px;
-        }
-        
-        .news-date {
-            color: #6CADDF;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-        
-        .news-title {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: #1C2D56;
-        }
-        
-        .news-excerpt {
-            color: #666;
-            margin-bottom: 15px;
-        }
-        
-        .read-more {
-            color: #1C2D56;
-            font-weight: bold;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        /* Newsletter Signup */
-        .newsletter {
-            background-color: #1C2D56;
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-            margin-bottom: 50px;
-            border-radius: 8px;
-        }
-        
-        .newsletter h2 {
-            margin-top: 0;
-        }
-        
-        .newsletter-form {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        
-        .newsletter-input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: none;
-            border-radius: 4px;
-        }
-        
-        .newsletter-btn {
-            background-color: #6CADDF;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 4px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: #1C2D56;
-            color: white;
-            padding: 40px 0;
-            text-align: center;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-        
-        .footer-link {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        
-        .social-link {
-            margin: 0 10px;
-        }
-        
-        .copyright {
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.7);
-        }
-    </style>
-</head>
-<body>
-    <!-- [Previous HTML structure remains the same until the news-grid section] -->
-    
-    <!-- News Grid - Updated with data attributes -->
-    <div class="news-grid" id="news-container">
-        <!-- News items will be loaded dynamically via JavaScript -->
+  <div class="page-header">
+    <div class="container">
+      <h1>Latest News & Updates</h1>
     </div>
+  </div>
 
-    <!-- Newsletter Signup -->
-    <div class="newsletter">
+  <main class="container">
+    <section class="news-section">
+      <h2 class="section-title fade-in">Club News</h2>
+      
+      <div class="news-grid" id="news-container">
+        <!-- News items will be loaded dynamically via JavaScript -->
+      </div>
+
+      <div class="newsletter fade-in">
         <h2>Stay Updated</h2>
         <p>Subscribe to our newsletter for the latest news straight to your inbox</p>
         <form class="newsletter-form" id="newsletter-form">
-            <input type="email" placeholder="Your email address" class="newsletter-input" id="newsletter-email" required>
-            <button type="submit" class="newsletter-btn">Subscribe</button>
-            <div id="newsletter-message" style="margin-top: 10px;"></div>
+          <input type="email" placeholder="Your email address" class="newsletter-input" id="newsletter-email" required>
+          <button type="submit" class="newsletter-btn">Subscribe</button>
+          <div id="newsletter-message"></div>
         </form>
-    </div>
+      </div>
+    </section>
+  </main>
 
-    <!-- [Footer remains the same] -->
+  <footer>
+    <p>&copy; 2023 Manchester City FC. All rights reserved.</p>
+  </footer>
 
-    <script>
-        // News Data - Could also be loaded from an API
-        const newsData = [
-  {
-    id: 1,
-    date: "June 15, 2023",
-    title: "Pep Guardiola Previews Derby Match",
-    excerpt: "The manager speaks to the press ahead of this weekend's crucial derby match against Manchester United.",
-    content: "Pep Guardiola addressed the media ahead of the Manchester derby, discussing team strategy, player form, and the importance of keeping composure under pressure. He noted, 'It's not just about tactics, it's about heart and unity.'",
-    image: "Images/preview.jpg",
-    category: "First Team"
-  },
-  {
-    id: 2,
-    date: "June 12, 2023",
-    title: "Erling Haaland: 'I'm Just Getting Started'",
-    excerpt: "Our star striker discusses his first season at the club and his ambitions for the coming year.",
-    content: "Erling Haaland reflected on his debut season, highlighting his adaptation to English football. 'I feel more confident every game. There's more to come,' said the forward.",
-    image: "Images/gugu.jpg",
-    category: "Interviews"
-  },
-  {
-    id: 3,
-    date: "June 8, 2023",
-    title: "City Academy Wins Youth Championship",
-    excerpt: "Our U18s secure another trophy with a dominant display in the national final.",
-    content: "The Manchester City U18s showcased exceptional talent and teamwork, winning 4-1 against Liverpool in the youth final. This marks their third consecutive youth title.",
-    image: "Images/youth.webp",
-    category: "Academy"
-  },
-  {
-    id: 4,
-    date: "June 5, 2023",
-    title: "City Stars Visit Local Children's Hospital",
-    excerpt: "First team players spend time with young fans at Royal Manchester Children's Hospital.",
-    content: "Players brought smiles to young patients by signing autographs, distributing gifts, and sharing stories. The visit is part of the club's City in the Community program.",
-    image: "Images/hospital.jpg",
-    category: "Community"
-  },
-  {
-    id: 5,
-    date: "June 1, 2023",
-    title: "City Complete Signing of Croatian Midfielder",
-    excerpt: "The club announces the acquisition of international star from Dinamo Zagreb.",
-    content: "Manchester City has signed a promising Croatian midfielder known for his passing accuracy and vision. The deal is reportedly worth £25 million and includes performance bonuses.",
-    image: "Images/kovaa.jpg",
-    category: "Transfers"
-  },
-  {
-    id: 6,
-    date: "May 28, 2023",
-    title: "Women's Team Secures Champions League Spot",
-    excerpt: "A dramatic final day victory ensures European football for City Women next season.",
-    content: "With a 2-1 win on the final day, City's Women's team secured a place in next season's UEFA Women's Champions League. The goals came from Kelly and Hemp.",
-    image: "Images/women.webp",
-    category: "Women's Team"
-  }
-];
+  <script>
+    // News Data
+    const newsData = [
+      {
+        id: 1,
+        date: "June 15, 2023",
+        title: "Pep Guardiola Previews Derby Match",
+        excerpt: "The manager speaks to the press ahead of this weekend's crucial derby match against Manchester United.",
+        content: "Pep Guardiola addressed the media ahead of the Manchester derby, discussing team strategy, player form, and the importance of keeping composure under pressure. He noted, 'It's not just about tactics, it's about heart and unity.' The manager emphasized the need for focus and determination against their city rivals, while also praising the progress of several squad players in recent training sessions.",
+        image: "Images/preview.jpg",
+        category: "First Team"
+      },
+      {
+        id: 2,
+        date: "June 12, 2023",
+        title: "Erling Haaland: 'I'm Just Getting Started'",
+        excerpt: "Our star striker discusses his first season at the club and his ambitions for the coming year.",
+        content: "Erling Haaland reflected on his debut season, highlighting his adaptation to English football. 'I feel more confident every game. There's more to come,' said the forward. The Norwegian international broke multiple Premier League scoring records in his first season and expressed his gratitude to teammates and fans for their support. Haaland also revealed his personal targets for the upcoming season, including improving his link-up play and contributing more assists.",
+        image: "Images/gugu.jpg",
+        category: "Interviews"
+      },
+      {
+        id: 3,
+        date: "June 8, 2023",
+        title: "City Academy Wins Youth Championship",
+        excerpt: "Our U18s secure another trophy with a dominant display in the national final.",
+        content: "The Manchester City U18s showcased exceptional talent and teamwork, winning 4-1 against Liverpool in the youth final. This marks their third consecutive youth title. Academy director Jason Wilcox praised the development of several players who are now knocking on the door of the first team. The match saw braces from both striker Carlos Borges and midfielder Shea Charles, with the team displaying the same possession-based philosophy as the senior squad.",
+        image: "Images/youth.webp",
+        category: "Academy"
+      },
+      {
+        id: 4,
+        date: "June 5, 2023",
+        title: "City Stars Visit Local Children's Hospital",
+        excerpt: "First team players spend time with young fans at Royal Manchester Children's Hospital.",
+        content: "Players brought smiles to young patients by signing autographs, distributing gifts, and sharing stories. The visit is part of the club's City in the Community program. Captain Ilkay Gündogan, who organized the visit, said, 'These moments put everything into perspective. If we can bring some joy to these brave children, it means more than any trophy.' The players spent several hours visiting different wards and participating in activities with the children.",
+        image: "Images/hospital.jpg",
+        category: "Community"
+      },
+      {
+        id: 5,
+        date: "June 1, 2023",
+        title: "City Complete Signing of Croatian Midfielder",
+        excerpt: "The club announces the acquisition of international star from Dinamo Zagreb.",
+        content: "Manchester City has signed promising Croatian midfielder Luka Vuskovic from Dinamo Zagreb in a deal reportedly worth £25 million with performance bonuses. The 19-year-old, known for his passing accuracy and vision, has signed a five-year contract. Director of Football Txiki Begiristain described him as 'one of the most exciting young talents in European football' who fits perfectly with City's style of play. Vuskovic will join the squad for pre-season training next month.",
+        image: "Images/kovaa.jpg",
+        category: "Transfers"
+      },
+      {
+        id: 6,
+        date: "May 28, 2023",
+        title: "Women's Team Secures Champions League Spot",
+        excerpt: "A dramatic final day victory ensures European football for City Women next season.",
+        content: "With a 2-1 win on the final day, City's Women's team secured a place in next season's UEFA Women's Champions League. The goals came from Chloe Kelly and Lauren Hemp in a thrilling encounter against Chelsea. Manager Gareth Taylor praised his team's resilience after a difficult start to the season. 'This achievement shows the character in this squad,' Taylor said in his post-match interview. The result means City will compete in Europe's elite competition for the sixth time in seven seasons.",
+        image: "Images/women.webp",
+        category: "Women's Team"
+      }
+    ];
 
-          
+    // DOM Elements
+    const newsContainer = document.getElementById('news-container');
+    const newsletterForm = document.getElementById('newsletter-form');
+    const newsletterEmail = document.getElementById('newsletter-email');
+    const newsletterMessage = document.getElementById('newsletter-message');
 
-        // DOM Elements
-        const newsContainer = document.getElementById('news-container');
-        const newsletterForm = document.getElementById('newsletter-form');
-        const newsletterEmail = document.getElementById('newsletter-email');
-        const newsletterMessage = document.getElementById('newsletter-message');
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+        renderNews();
+        setupEventListeners();
+        observeFadeElements();
+    });
 
-        // Initialize the page
-        document.addEventListener('DOMContentLoaded', function() {
-            renderNews();
-            setupEventListeners();
+    // Render news articles
+    function renderNews() {
+      newsContainer.innerHTML = newsData.map(newsItem => `
+        <div class="news-card fade-in" data-id="${newsItem.id}" role="article">
+          <img src="${newsItem.image}" alt="${newsItem.title}" class="news-image" loading="lazy">
+          <div class="news-content">
+            <div class="news-date">${newsItem.date} • ${newsItem.category}</div>
+            <h3 class="news-title">${newsItem.title}</h3>
+            <p class="news-excerpt">${newsItem.excerpt}</p>
+            <a href="#" class="read-more" data-id="${newsItem.id}" aria-expanded="false" aria-controls="news-content-${newsItem.id}">Read More →</a>
+            <div id="news-content-${newsItem.id}" class="full-news-content">
+              ${newsItem.content}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Set up event listeners
+    function setupEventListeners() {
+        // Newsletter form submission
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            subscribeToNewsletter();
         });
 
-        // Render news articles
-        function renderNews() {
-  newsContainer.innerHTML = newsData.map(newsItem => `
-    <div class="news-card" data-id="${newsItem.id}">
-      <img src="${newsItem.image}" alt="${newsItem.title}" class="news-image">
-      <div class="news-content">
-        <div class="news-date">${newsItem.date}</div>
-        <h3 class="news-title">${newsItem.title}</h3>
-        <p class="news-excerpt">${newsItem.excerpt}</p>
-        <a href="#" class="read-more" data-id="${newsItem.id}">Read More →</a>
-        <div class="full-news-content" style="display: none; margin-top: 10px;">
-          ${newsItem.content}
-        </div>
-      </div>
-    </div>
-  `).join('');
-}
-
-
-        // Set up event listeners
-        function setupEventListeners() {
-            // Newsletter form submission
-            newsletterForm.addEventListener('submit', function(e) {
+        // Click event for news cards
+        newsContainer.addEventListener('click', function(e) {
+            if (e.target.classList.contains('read-more')) {
                 e.preventDefault();
-                subscribeToNewsletter();
-            });
-
-            // Click event for news cards (event delegation)
-            newsContainer.addEventListener('click', function(e) {
-                if (e.target.classList.contains('read-more')) {
-                    e.preventDefault();
-                    const newsId = e.target.getAttribute('data-id');
-                    viewNewsItem(newsId);
-                }
-                
-                if (e.target.closest('.news-card')) {
-                    const card = e.target.closest('.news-card');
-                    const newsId = card.getAttribute('data-id');
-                    // You could add additional click behavior here
-                }
-            });
-        }
-
-        // Newsletter subscription
-        function subscribeToNewsletter() {
-            const email = newsletterEmail.value.trim();
-            
-            if (!validateEmail(email)) {
-                showNewsletterMessage('Please enter a valid email address', 'error');
-                return;
+                const newsId = e.target.getAttribute('data-id');
+                toggleNewsContent(newsId, e.target);
             }
+        });
+    }
 
-            // Simulate API call
-            showNewsletterMessage('Subscribing...', 'info');
-            
-            setTimeout(() => {
-                // In a real app, this would be an actual API call
-                showNewsletterMessage('Thank you for subscribing!', 'success');
-                newsletterForm.reset();
-                
-                // You could track this in analytics
-                console.log(`New subscriber: ${email}`);
-            }, 1500);
+    // Toggle news content visibility
+    function toggleNewsContent(id, link) {
+      const content = document.getElementById(`news-content-${id}`);
+      const isExpanded = content.style.display === 'block';
+      
+      content.style.display = isExpanded ? 'none' : 'block';
+      link.textContent = isExpanded ? 'Read More →' : 'Read Less ←';
+      link.setAttribute('aria-expanded', !isExpanded);
+    }
+
+    // Newsletter subscription
+    function subscribeToNewsletter() {
+        const email = newsletterEmail.value.trim();
+        
+        if (!validateEmail(email)) {
+            showNewsletterMessage('Please enter a valid email address', 'error');
+            return;
         }
 
-        // View news item details
-       function viewNewsItem(id) {
-  const card = document.querySelector(`.news-card[data-id="${id}"]`);
-  const fullContent = card.querySelector('.full-news-content');
-  const readMoreLink = card.querySelector('.read-more');
+        showNewsletterMessage('Subscribing...', 'info');
+        
+        setTimeout(() => {
+            showNewsletterMessage('Thank you for subscribing! You will receive our latest news soon.', 'success');
+            newsletterForm.reset();
+        }, 1500);
+    }
 
-  if (fullContent.style.display === 'none') {
-    fullContent.style.display = 'block';
-    readMoreLink.textContent = 'Read Less ←';
-  } else {
-    fullContent.style.display = 'none';
-    readMoreLink.textContent = 'Read More →';
-  }
-}
+    // Helper function to validate email
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
 
-        // Helper function to validate email
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
+    // Show newsletter messages
+    function showNewsletterMessage(message, type) {
+        newsletterMessage.textContent = message;
+        newsletterMessage.style.color = type === 'error' ? '#ff4444' : 
+                                      type === 'success' ? '#4CAF50' : '#6CADDF';
+    }
 
-        // Helper function to show newsletter messages
-        function showNewsletterMessage(message, type) {
-            newsletterMessage.textContent = message;
-            newsletterMessage.style.color = type === 'error' ? '#ff4444' : 
-                                          type === 'success' ? '#4CAF50' : '#6CADDF';
-        }
+    // Intersection Observer for fade-in animations
+    function observeFadeElements() {
+      const fadeElements = document.querySelectorAll('.fade-in');
+      const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
 
-        // Optional: Filter news by category
-        function filterNews(category) {
-            if (category === 'all') {
-                renderNews();
-                return;
-            }
-            
-            const filteredNews = newsData.filter(item => item.category === category);
-            newsContainer.innerHTML = filteredNews.map(newsItem => `
-                <div class="news-card">
-                    <img src="${newsItem.image}" alt="${newsItem.title}" class="news-image">
-                    <div class="news-content">
-                        <div class="news-date">${newsItem.date}</div>
-                        <h3 class="news-title">${newsItem.title}</h3>
-                        <p class="news-excerpt">${newsItem.excerpt}</p>
-                        <a href="#" class="read-more" data-id="${newsItem.id}">Read More →</a>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // You could add this to your navigation to filter news:
-        // <button onclick="filterNews('First Team')">First Team</button>
-        // <button onclick="filterNews('Academy')">Academy</button>
-        // <button onclick="filterNews('all')">All News</button>
-    </script>
+      fadeElements.forEach(el => {
+        el.style.opacity = 0;
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+        fadeObserver.observe(el);
+      });
+    }
+  </script>
 </body>
 </html>

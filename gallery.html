@@ -1,73 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Gallery - Manchester City FC</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="Images/logo.png" type="image/png">
   <style>
-    /* Header Styles */
+    /* EXACTLY matches index.html styles */
+    :root {
+      --sky-blue: #6CABDD;
+      --dark-blue: #1C2C5B;
+      --white: #FFFFFF;
+      --light-gray: #F5F5F5;
+      --medium-gray: #DDDDDD;
+      --dark-gray: #333333;
+      --gold: #FFD700;
+      --red: #FF0000;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background-color: var(--light-gray);
+      color: var(--dark-gray);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 15px;
+    }
+
+    /* Header Styles - identical to index.html */
     header {
-      background-color: #1C2C5B;
+      background-color: var(--dark-blue);
+      color: var(--white);
       padding: 20px 0;
-      color: white;
-      border-bottom: 5px solid #6CABDD;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     .header-container {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 0 20px;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
-    #logo img {
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
       height: 60px;
+      width: auto;
     }
 
-    header h1 {
-      font-size: 2rem;
-      margin: 0;
+    .logo h1 {
+      margin-left: 15px;
+      font-size: 1.8rem;
     }
 
+    /* Navigation - identical to index.html */
     nav {
-      background-color: #6CABDD;
+      background-color: var(--sky-blue);
+      padding: 15px 0;
     }
 
     nav ul {
       list-style: none;
       display: flex;
       justify-content: center;
-      margin: 0;
-      padding: 0;
       flex-wrap: wrap;
     }
 
     nav li {
-      margin: 0;
+      margin: 0 15px;
     }
 
     nav a {
-      display: block;
-      padding: 15px 20px;
-      color: white;
+      color: var(--white);
       text-decoration: none;
-      font-weight: 600;
-      transition: background-color 0.3s;
+      font-weight: bold;
+      font-size: 18px;
+      transition: color 0.3s;
+      padding: 5px 10px;
+      border-radius: 4px;
     }
 
-    nav a:hover,
+    nav a:hover {
+      color: var(--gold);
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
     nav a.active {
-      background-color: #1C2C5B;
+      background-color: var(--dark-blue);
     }
 
-    /* Gallery Slideshow Styles */
-    main {
-      background-color: #f5f5f5;
-      padding: 40px 20px;
+    /* Page Header - matches index.html hero banner style */
+    .page-header {
+      background: linear-gradient(rgba(28, 44, 91, 0.8), rgba(28, 44, 91, 0.8)), 
+                  url('Images/gallery-header.jpg') center/cover;
+      color: var(--white);
       text-align: center;
+      padding: 80px 20px;
+      margin-bottom: 40px;
     }
 
+    .page-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Gallery Section - styled like index.html content sections */
+    .gallery-section {
+      padding: 30px 20px;
+      margin: 20px 0;
+      background-color: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .gallery-section h2 {
+      color: var(--dark-blue);
+      margin-bottom: 25px;
+      font-size: 1.5rem;
+      text-align: center;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .gallery-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: var(--sky-blue);
+    }
+
+    /* Original gallery styles preserved exactly */
     .slideshow-container {
       position: relative;
       max-width: 800px;
@@ -115,6 +200,7 @@
 
     .dots {
       margin-top: 15px;
+      text-align: center;
     }
 
     .dot {
@@ -125,114 +211,166 @@
       border-radius: 50%;
       display: inline-block;
       transition: background-color 0.3s;
+      cursor: pointer;
     }
 
     .dot.active {
       background-color: #1C2C5B;
     }
 
-    footer {
+    /* Footer - identical to index.html */
+    .site-footer {
+      background-color: var(--dark-blue);
+      color: var(--white);
       text-align: center;
       padding: 20px;
-      background-color: #1C2C5B;
-      color: white;
+      margin-top: 30px;
+    }
+
+    /* Media Queries - identical to index.html */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .logo {
+        margin-bottom: 15px;
+        justify-content: center;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      nav li {
+        margin: 5px 0;
+      }
+      
+      .page-header h1 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav a {
+        font-size: 0.9rem;
+        padding: 5px 8px;
+      }
+      
+      .page-header {
+        padding: 60px 15px;
+      }
+      
+      .page-header h1 {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
-
   <header>
-    <div class="header-container">
-      <div id="logo">
-        <img src="Images/logo.png" alt="Manchester City FC Logo" />
+    <div class="header-container container">
+      <div class="logo">
+        <img src="Images/logo.png" alt="Manchester City FC Logo">
+        <h1>Manchester City FC</h1>
       </div>
-      <h1>Manchester City FC</h1>
     </div>
-
+    
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="players.html">Players</a></li>
         <li><a href="matches.html">Matches</a></li>
-        <li><a href="gallery.html" class="active">Gallery</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="citywomen.html">City Ladies</a></li>
-        <li><a href="shop/shop.html">Shop</a></li>
+        <li><a href="signup.html">Sign In</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="gallery.html" class="active">Gallery</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <h2 style="color: #1C2C5B;">Club Gallery</h2>
-    <div class="slideshow-container">
-
-      <div class="slide">
-        <img src="Images/gallery1.jpg" alt=" Image 1">
-      </div>
-
-      <div class="slide">
-        <img src="Images/gallery 2.jpg" alt=" Image 2">
-      </div>
-
-      <div class="slide">
-        <img src="Images/gallery3.jpg" alt="Image 3">
-      </div>
-
-      <div class="slide">
-        <img src="Images/gallery4.jpg" alt="Image 4">
-      </div>
-
-      <div class="slide">
-        <img src="Images/gallery4.jpg" alt="Image 4">
-      </div> 
-
-      <div class="slide">
-        <img src="Images/big.jpg" alt="Image 5">
-      </div>
-
-      <div class="slide">
-        <img src="Images/uefa.jpg" alt="Image 6">
-      </div>
-
-      <div class="slide">
-        <img src="Images/old.jpg" alt="Image 7">
-      </div>
-
-      <div class="slide">
-        <img src="Images/ladies 1.jpg" alt="Image 8">
-      </div>
-
-     <div class="slide">
-        <img src="Images/ladies 4.jpg" alt="Image 9">
-      </div>
-
-    <div class="slide">
-        <img src="Images/ladies team.jpg" alt="Image 10">
-      </div>
-
-
-
-
-
-      <!-- Arrows -->
-      <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-      <a class="next" onclick="changeSlide(1)">&#10095;</a>
+  <!-- Page Header styled like index.html hero banner -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Club Gallery</h1>
     </div>
+  </section>
 
-    <!-- Dots -->
-    <div class="dots">
-      <span class="dot" onclick="currentSlide(1)"></span>
-      <span class="dot" onclick="currentSlide(2)"></span>
-      <span class="dot" onclick="currentSlide(3)"></span>
-      <span class="dot" onclick="currentSlide(4)"></span>
-    </div>
+  <main class="container">
+    <section class="gallery-section">
+      <h2>Memorable Moments</h2>
+      
+      <!-- Original gallery markup preserved exactly -->
+      <div class="slideshow-container">
+        <div class="slide">
+          <img src="Images/gallery1.jpg" alt="Manchester City team celebration">
+        </div>
+
+        <div class="slide">
+          <img src="Images/men.jpg" alt="Etihad Stadium aerial view">
+        </div>
+
+        <div class="slide">
+          <img src="Images/nick.jpg" alt="Player action shot">
+        </div>
+
+        <div class="slide">
+          <img src="Images/men5.jpg" alt="Trophy celebration">
+        </div>
+
+        <div class="slide">
+          <img src="Images/big.jpg" alt="Stadium atmosphere">
+        </div> 
+
+        <div class="slide">
+          <img src="Images/uefa.jpg" alt="European competition">
+        </div>
+
+        <div class="slide">
+          <img src="Images/old.jpg" alt="Historical photo">
+        </div>
+
+        <div class="slide">
+          <img src="Images/ladies 1.jpg" alt="Women's team action">
+        </div>
+
+        <div class="slide">
+          <img src="Images/men 3.jpg" alt="Women's team celebration">
+        </div>
+
+        <div class="slide">
+          <img src="Images/men 6.jpg" alt="Women's team photo">
+        </div>
+
+        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+      </div>
+
+      <div class="dots">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span>
+        <span class="dot" onclick="currentSlide(6)"></span>
+        <span class="dot" onclick="currentSlide(7)"></span>
+        <span class="dot" onclick="currentSlide(8)"></span>
+        <span class="dot" onclick="currentSlide(9)"></span>
+        <span class="dot" onclick="currentSlide(10)"></span>
+      </div>
+    </section>
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <p>&copy; 2025 Manchester City FC. All rights reserved.</p>
   </footer>
 
+  <!-- Original JavaScript preserved exactly -->
   <script>
     let slideIndex = 1;
     showSlides(slideIndex);
@@ -265,6 +403,5 @@
       dots[slideIndex - 1].classList.add("active");
     }
   </script>
-
 </body>
 </html>

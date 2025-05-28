@@ -6,13 +6,17 @@
   <title>Manchester City FC | Home</title>
   <link rel="icon" href="Images/logo.png" type="image/png">
   <style>
-    /* Base Styles */
+    
+ /* Consistent with about.html styles */
     :root {
       --sky-blue: #6CABDD;
       --dark-blue: #1C2C5B;
       --white: #FFFFFF;
       --light-gray: #F5F5F5;
+      --medium-gray: #DDDDDD;
+      --dark-gray: #333333;
       --gold: #FFD700;
+      --red: #FF0000;
     }
 
     * {
@@ -24,19 +28,18 @@
 
     body {
       background-color: var(--light-gray);
-      color: #333;
+      color: var(--dark-gray);
       line-height: 1.6;
-      overflow-x: hidden;
     }
 
     .container {
-      width: 100%;
+      width: 90%;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 15px;
+      padding: 20px 15px;
     }
 
-    /* Header Styles - Matching kgantele's navigation */
+    /* Header Styles */
     header {
       background-color: var(--dark-blue);
       color: var(--white);
@@ -67,14 +70,12 @@
     .logo h1 {
       margin-left: 15px;
       font-size: 1.8rem;
-      color: var(--white);
     }
 
-    /* Navigation - Exactly like kgantele's version */
+    /* Navigation */
     nav {
       background-color: var(--sky-blue);
       padding: 15px 0;
-      width: 100%;
     }
 
     nav ul {
@@ -82,7 +83,6 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      padding: 0 10px;
     }
 
     nav li {
@@ -108,6 +108,21 @@
       background-color: var(--dark-blue);
     }
 
+    /* Page Header */
+    .page-header {
+      background: linear-gradient(rgba(28, 44, 91, 0.8), rgba(28, 44, 91, 0.8)), 
+                  url('Images/news-header.jpg') center/cover;
+      color: var(--white);
+      text-align: center;
+      padding: 80px 20px;
+      margin-bottom: 40px;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
     /* Hero Banner */
     .hero-banner {
       background: linear-gradient(rgba(28, 44, 91, 0.8), rgba(28, 44, 91, 0.8)), 
@@ -278,7 +293,7 @@
       </div>
     </div>
     
-    <!-- Navigation exactly like kgantele's version -->
+  
     <nav>
       <ul>
         <li><a href="index.html" class="active">Home</a></li>
@@ -290,6 +305,7 @@
         <li><a href="signup.html">Sign In</a></li>
         <li><a href="shop.html">Shop</a></li>
         <li><a href="news.html">News</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
       </ul>
     </nav>
   </header>
@@ -323,6 +339,7 @@
       </ul>
       <a href="news.html" class="btn-secondary">Read More News</a>
     </section>
+    
 
     <!-- Social Media -->
     <section class="follow-us">
